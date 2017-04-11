@@ -11,11 +11,32 @@ module.exports = function(app, passport) {
         res.render('login.ejs', { message: req.flash('error_msg') });
     });
 
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile',
-        failureRedirect : '/login',
-        failureFlash : true
-    }));
+    app.post('/login', function(req,res){
+      var email = req.body.email,
+        password = req.body.password;
+
+      db.dbConnect();
+
+      db.usersModel.find({'email': email}, function(err, users){
+      if(err) {
+        throw err;
+      } else if(users == 0){
+        console.log('There is no such user');
+      } else {
+        console.log(users);
+        var dbPassword = users[0].password;
+
+        if(bcrypt.compareSync(password, dbPassword)){
+          console.log("Rätt lösenord");
+          res.redirect('/dashboard');
+        } else {
+          console.log("fel lösenord");
+          res.redirect('/login')
+        };
+      }
+
+      });
+    });
 
 
 
@@ -61,7 +82,7 @@ module.exports = function(app, passport) {
     });
 
 
-    app.get('/dashboard', isLoggedIn, function(req, res) {
+    app.get('/dashboard', function(req, res) {
         res.render('dashboard.ejs', {
             user : req.user // get the user out of session and pass to template
         });
