@@ -1,0 +1,115 @@
+body {
+  height: 100vh;
+}
+
+nav {
+  background-color: #ffffff;
+}
+
+nav ul a, nav a.brand-logo {
+  color: #333333;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/office.jpg");
+  background-size: cover;
+  position: relative;
+}
+
+.hero-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer.page-footer {
+  background-color: #333333;
+}
+
+#dashboard {
+  background: #555555;
+  /*background: #bab7b7;
+  background: -moz-linear-gradient(top, #bab7b7 0%, #333333 100%);
+  background: -webkit-linear-gradient(top, #bab7b7 0%,#333333 100%);
+  background: linear-gradient(to bottom, #bab7b7 0%,#333333 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bab7b7', endColorstr='#333333',GradientType=0 );*/
+}
+
+#dashSide {
+  background: #333333;
+  height: 92vh;
+  color: #686868;
+  text-align: center;
+}
+
+#dashSide hr {
+  border-color: #3e3d3d;
+  border-style: solid;
+}
+
+#dashSide li {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#dashSide li i.material-icons {
+  font-size: 50px;
+}
+#dashSide ul li.active {
+  color: #78be20;
+}
+
+.collapsible.popout {
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+.collapsible-header i {
+  color: #78be20;
+}
+
+.collapsible-body {
+  background-color: #ffffff;
+}
+.picker__weekday-display {
+  background: #78be20;
+  color: #333333;
+  font-weight: bold;
+}
+.picker__date-display {
+  background-color: #555555;
+}
+
+.picker__day.picker__day--today {
+  color: #78be20;
+}
+
+.picker__footer button {
+  color: #78be20;
+}
+
+
+.startButton {
+  background: #78be20;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  position: relative;
+}
+.startText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #78be20;
+  box-shadow: 0 1px 0 0 #78be20;
+}

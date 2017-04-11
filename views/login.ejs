@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>What Did I Do</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+
+        </ul>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-buttons">
+        <a class="waves-effect waves-light btn-large" href="/signUp"><i class="material-icons right">cloud</i>Sign up</a>
+        <a class="waves-effect waves-light btn-large" href="/login"><i class="material-icons right">cloud</i>Login</a>
+      </div>
+    </div>
+      <div id="loginModal" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4>
+          <div class="row">
+  <form action="/login" name="loginForm" method="post">
+    <div class="row">
+      <div class="input-field col s6">
+        <input name="email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s6">
+        <input name="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn modal-close waves-effect waves-light" type="submit" name="action">Login
+        <i class="material-icons right">send</i>
+      </button>
+      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </div>
+    </form>
+
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/materialize.min.js"></script>
+    <script src="/js/script.js"></script>
+
+</body>
+</html>
