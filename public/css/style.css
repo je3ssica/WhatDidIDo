@@ -29,6 +29,10 @@ footer.page-footer {
   background-color: #333333;
 }
 
+h4 {
+  text-align: center;
+}
+
 #dashboard {
   background: #555555;
   /*background: #bab7b7;
