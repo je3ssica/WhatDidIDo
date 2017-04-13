@@ -1,6 +1,7 @@
 var db = require('../config/database.js');
 var bcrypt = require('bcryptjs');
 var clients = require('./getClients.js');
+var session = require('express-session');
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
@@ -25,11 +26,9 @@ module.exports = function(app, passport) {
 
         if(bcrypt.compareSync(password, dbPassword)){
           console.log("Rätt lösenord");
-          console.log(users[0]._id);
-          // db.projectsModel.find({responsible: users[0]._id}, function(err, clients){
-          //   console.log(clients);
-            res.render('dashboard.ejs', {user:users[0]});
-          // })
+
+            // res.render('dashboard.ejs', {user:users[0]});
+            res.redirect('/dashboard');
         } else {
           console.log("fel lösenord");
           res.redirect('/login')
@@ -75,9 +74,6 @@ module.exports = function(app, passport) {
         });
       }
     });
-
-
-
   });
 
 
