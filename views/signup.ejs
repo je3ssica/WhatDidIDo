@@ -37,7 +37,9 @@
       <h4>Create Account</h4>
       <div class="row">
 
-
+        <% if (error_msg) {%>
+          <%=error_msg%>
+          <%}%>
 
           <form action="/signUp" method="post">
 

@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var configDB = require('./config/database.js');
+//var db = require('./config/database.js');
 
 //mongoose.connect('mongodb://localhost/whatdidido');
 
