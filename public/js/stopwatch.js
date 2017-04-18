@@ -23,11 +23,13 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-timer();
+// timer();
 
 
 /* Start button */
-start.onclick = timer;
+start.onclick = function(){
+  timer();
+}
 
 /* Stop button */
 stop.onclick = function() {
