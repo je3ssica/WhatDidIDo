@@ -40,7 +40,8 @@ module.exports = function(app, passport) {
         if(bcrypt.compareSync(password, dbPassword)){
           console.log("Rätt lösenord");
           sess=req.session;
-          sess.user = users[0].id;
+          sess.user = users[0];
+          sess.userId = users[0].id;
           sess.userName = users[0].firstName;
           sess.userMail = users[0].email;
 
@@ -96,7 +97,7 @@ module.exports = function(app, passport) {
 
   app.get('/dashboard', function(req, res) {
     var email = sess.userMail;
-    var userId = sess.user;
+    var userId = sess.userId;
 
     if(sess.userName){
       db.query(" SELECT * FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients) {
@@ -119,7 +120,8 @@ module.exports = function(app, passport) {
   });
 
   app.get('/settings', function(req,res){
-    res.render('pages/settings.ejs', { menu: loggedInMenu });
+    res.render('pages/settings.ejs', { menu: loggedInMenu,
+    user: sess.user });
   });
 
 
