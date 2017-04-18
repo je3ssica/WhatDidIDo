@@ -53,7 +53,7 @@ h4 {
 
 #dashSide {
   background: #333333;
-  height: 92vh;
+  height: 100vh;
   color: #686868;
   text-align: center;
 }
@@ -145,4 +145,16 @@ input[name="timestamp"] {
 .input-field input[type=text]:focus {
   border-bottom: 1px solid #78be20;
   box-shadow: 0 1px 0 0 #78be20;
+}
+
+#settingsForm {
+  background-color: #f9f9f9;
+  width: 70%;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 50px;
+}
+
+button[type="submit"] {
+  float: right;
 }

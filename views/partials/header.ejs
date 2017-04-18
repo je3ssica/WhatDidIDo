@@ -8,7 +8,9 @@
     <% }); %>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-
+    <% menu.forEach(function(item) { %>
+      <li><a href="<%= item.link %>"> <%= item.text %></a></li>
+    <% }); %>
     </ul>
   </div>
 </nav>

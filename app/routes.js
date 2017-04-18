@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
   ];
   var loggedInMenu = [
     { text: 'About', link: '/about' },
-    { text: 'Settings', link: '/profile'},
+    { text: 'Settings', link: '/settings'},
     { text: 'LogOut', link: '/about' }
   ]
 
@@ -116,6 +116,10 @@ module.exports = function(app, passport) {
       // });
     });
   }
+  });
+
+  app.get('/settings', function(req,res){
+    res.render('pages/settings.ejs', { menu: loggedInMenu });
   });
 
 
