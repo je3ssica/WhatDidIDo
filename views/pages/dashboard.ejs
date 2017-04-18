@@ -41,11 +41,14 @@
                   <div class="collapsible-header">  <i class="material-icons">assignment</i><%= client.project%></div>
                   <div class="collapsible-body">
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="What did you do?">
-                    <input type="date" class="datepicker">
+                    <input type="date" data-value="2015/04/20" class="datepicker">
+                    <div class="row">
                     <div class="startButton">
                       <span class="startText">Start</span>
                     </div>
-                    <span><input type="text" name="timestamp" value=""></span>
+                    <input type="text" name="timestamp" value="00:00:00" disabled>
+                    </div>
+
                   </div>
                 </li>
               </ul>

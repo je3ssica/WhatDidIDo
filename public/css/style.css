@@ -75,9 +75,13 @@ h4 {
   color: #78be20;
 }
 
-.collapsible.popout {
+.collapsible {
   width: 70%;
   margin: 0 auto;
+}
+
+.collapsible-body .collapsible {
+  width: 100%;
 }
 
 
@@ -112,6 +116,7 @@ h4 {
   width: 75px;
   border-radius: 50%;
   position: relative;
+  display: inline-block;
 }
 .startText {
   position: absolute;
@@ -120,6 +125,11 @@ h4 {
   transform: translate(-50%, -50%);
   color: #ffffff;
   text-transform: uppercase;
+}
+
+input[name="timestamp"] {
+  display: inline-block;
+  width: 80%;
 }
 
 .input-field input[type=text]:focus {
