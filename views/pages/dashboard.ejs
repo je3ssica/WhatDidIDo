@@ -28,26 +28,35 @@
     <div class="col s11">
       <h4>Welcome <%=user%></h4>
 
-      <ul class="collapsible popout" data-collapsible="accordion">
+
+
+
+        <ul class="collapsible" data-collapsible="accordion">
+          <% clients.forEach(function(client) { %>
           <li>
-            <div class="collapsible-header"><i class="material-icons">person</i>CLIENT</div>
+            <div class="collapsible-header"><i class="material-icons">person</i><%= client.name%></div>
             <div class="collapsible-body">
               <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                  <div class="collapsible-header">  <i class="material-icons">assignment</i>Projekt 1</div>
+                  <div class="collapsible-header">  <i class="material-icons">assignment</i><%= client.project%></div>
                   <div class="collapsible-body">
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="What did you do?">
                     <input type="date" class="datepicker">
                     <div class="startButton">
-                    <span class="startText">Start</span>
+                      <span class="startText">Start</span>
                     </div>
                     <span><input type="text" name="timestamp" value=""></span>
                   </div>
                 </li>
               </ul>
             </div>
-            </li>
-        </ul>
+          </li>
+          <% }); %>
+
+      </ul>
+
+
+
       </div>
     </div>
 

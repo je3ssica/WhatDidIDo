@@ -40,7 +40,9 @@ module.exports = function(app, passport) {
         if(bcrypt.compareSync(password, dbPassword)){
           console.log("Rätt lösenord");
           sess=req.session;
-          sess.user = users[0].firstName;
+          sess.user = users[0].id;
+          sess.userName = users[0].firstName;
+          sess.userMail = users[0].email;
 
             // res.render('dashboard.ejs', {user:users[0]});
             res.redirect('/dashboard');
@@ -93,13 +95,27 @@ module.exports = function(app, passport) {
 
 
   app.get('/dashboard', function(req, res) {
-    if(sess.user){
-      res.render('pages/dashboard.ejs', {
-        user : sess.user, // get the user out of session and pass to template
-        menu: loggedInMenu
-      });
-    }
+    var email = sess.userMail;
+    var userId = sess.user;
 
+    if(sess.userName){
+      db.query(" SELECT * FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients) {
+        if(err) {
+          throw err;
+        } else {
+          console.log(clients);
+          res.render('pages/dashboard.ejs', {
+            user : sess.userName, // get the user out of session and pass to template
+            menu: loggedInMenu,
+            clients: clients
+          });
+        }
+      // res.render('pages/dashboard.ejs', {
+      //   user : sess.userName, // get the user out of session and pass to template
+      //   menu: loggedInMenu
+      // });
+    });
+  }
   });
 
 
@@ -107,15 +123,6 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
-};
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
 
-  // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
-  return next();
-
-  // if they aren't redirect them to the home page
-  res.redirect('/');
 }
