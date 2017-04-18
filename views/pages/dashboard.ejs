@@ -43,8 +43,12 @@
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="What did you do?">
                     <input type="date" data-value="2015/04/20" class="datepicker">
                     <div class="row">
-                    <div class="startButton">
+                    <h6><time>00:00:00</time></h6>
+                    <div id="start" class="startButton">
                       <span class="startText">Start</span>
+                    </div>
+                    <div id="stop" class="stopButton">
+                      <span class="stopText">Stop</span>
                     </div>
                     <input type="text" name="timestamp" value="00:00:00" disabled>
                     </div>
@@ -63,9 +67,9 @@
       </div>
     </div>
 
-
     <script src="/js/jquery.min.js"></script>
     <script src="/js/materialize.min.js"></script>
+    <script src="/js/stopWatch.js"></script>
     <script src="/js/script.js"></script>
 
   </body>
