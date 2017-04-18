@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:500|Lato');
 body {
   height: 100vh;
 }
@@ -6,8 +7,16 @@ nav {
   background-color: #ffffff;
 }
 
-nav ul a, nav a.brand-logo {
+nav ul a {
   color: #333333;
+  font-family: Lato, sans-serif;
+  text-transform: uppercase;
+}
+
+nav a.brand-logo {
+  color: #333333;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  margin-left: 30px;
 }
 
 .hero {

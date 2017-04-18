@@ -11,18 +11,7 @@
 
 </head>
 <body id="dashboard">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-
-      </ul>
-    </div>
-  </nav>
+  <% include ../partials/header.ejs %>
 
   <div class="row">
 
@@ -38,12 +27,6 @@
 
     <div class="col s11">
       <h4>Welcome <%=user%></h4>
-      <h5><%=user%></h5>
-
-      <%=success%>
-
-
-
 
       <ul class="collapsible popout" data-collapsible="accordion">
           <li>

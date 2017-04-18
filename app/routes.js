@@ -4,12 +4,25 @@ var clients = require('./getClients.js');
 var session = require('express-session');
 
 module.exports = function(app, passport) {
+  var sess;
+  var loggedOutMenu = [
+    { text: 'About', link: '/about' },
+    { text: 'Register', link: '/signup' },
+    { text: 'Login', link: '/login' }
+  ];
+  var loggedInMenu = [
+    { text: 'About', link: '/about' },
+    { text: 'Settings', link: '/profile'},
+    { text: 'LogOut', link: '/about' }
+  ]
+
   app.get('/', function(req, res) {
-    res.render('index.ejs');
+
+    res.render('pages/index.ejs', {menu:loggedOutMenu});
   });
 
   app.get('/login', function(req, res) {
-    res.render('login.ejs', { message: req.flash('error_msg') });
+    res.render('pages/login.ejs', {menu:loggedOutMenu});
   });
 
   app.post('/login', function(req,res){
@@ -26,6 +39,8 @@ module.exports = function(app, passport) {
 
         if(bcrypt.compareSync(password, dbPassword)){
           console.log("Rätt lösenord");
+          sess=req.session;
+          sess.user = users[0].firstName;
 
             // res.render('dashboard.ejs', {user:users[0]});
             res.redirect('/dashboard');
@@ -41,7 +56,7 @@ module.exports = function(app, passport) {
 
 
   app.get('/signup', function(req, res) {
-    res.render('signup.ejs');
+    res.render('pages/signup.ejs', {menu:loggedOutMenu});
   });
 
 
@@ -78,9 +93,13 @@ module.exports = function(app, passport) {
 
 
   app.get('/dashboard', function(req, res) {
-    res.render('dashboard.ejs', {
-      user : req.user, // get the user out of session and pass to template
-    });
+    if(sess.user){
+      res.render('pages/dashboard.ejs', {
+        user : sess.user, // get the user out of session and pass to template
+        menu: loggedInMenu
+      });
+    }
+
   });
 
 
