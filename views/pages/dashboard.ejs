@@ -1,13 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="/css/materialize.css">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <title>What Did I Do</title>
+  <% include ../partials/head.ejs %>
 
 </head>
 <body id="dashboard">
@@ -15,21 +9,10 @@
 
   <div class="row">
 
-    <div id="dashSide" class="col s1">
-      <ul>
-        <li class="active"> <i class="material-icons">group</i><br> Clients</li>
-        <hr>
-        <li> <i class="material-icons">assignment_turned_in</i><br> History</li>
-        <hr>
-        <li> <i class="material-icons">trending_up</i><br> Statistics</li>
-      </ul>
-    </div>
+    <% include ../partials/dashside.ejs %>
 
     <div class="col s11">
       <h4>Welcome <%=user%></h4>
-
-
-
 
         <ul class="collapsible" data-collapsible="accordion">
           <% clients.forEach(function(client) { %>

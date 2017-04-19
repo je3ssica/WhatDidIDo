@@ -57,6 +57,9 @@ h4 {
   color: #686868;
   text-align: center;
 }
+#dashSide a {
+  color: #686868;
+}
 
 #dashSide hr {
   border-color: #3e3d3d;
