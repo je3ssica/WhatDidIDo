@@ -2,27 +2,17 @@
 <html>
 <head>
   <% include ../partials/head.ejs %>
+
 </head>
 <body id="dashboard">
   <% include ../partials/header.ejs %>
 
   <div class="row">
 
-    <div id="dashSide" class="col s1">
-      <ul>
-        <li class="active"> <i class="material-icons">group</i><br> Clients</li>
-        <hr>
-        <li> <i class="material-icons">assignment_turned_in</i><br> History</li>
-        <hr>
-        <li> <i class="material-icons">trending_up</i><br> Statistics</li>
-      </ul>
-    </div>
+    <% include ../partials/dashside.ejs %>
 
     <div class="col s11">
       <h4>Welcome <%=user%></h4>
-
-
-
 
         <ul class="collapsible" data-collapsible="accordion">
           <% clients.forEach(function(client) { %>
@@ -36,16 +26,12 @@
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="What did you do?">
                     <input type="date" data-value="2015/04/20" class="datepicker">
                     <div class="row">
-                    <h6><time>00:00:00</time></h6>
-                    <div id="start" class="startButton">
+                    <div class="startButton">
                       <span class="startText">Start</span>
-                    </div>
-                    <div id="stop" class="stopButton">
-                      <span class="stopText">Stop</span>
                     </div>
                     <input type="text" name="timestamp" value="00:00:00" disabled>
                     </div>
-                    <input type="submit" value="Save">
+
                   </div>
                 </li>
               </ul>
@@ -60,9 +46,9 @@
       </div>
     </div>
 
+
     <script src="/js/jquery.min.js"></script>
     <script src="/js/materialize.min.js"></script>
-    <script src="/js/stopWatch.js"></script>
     <script src="/js/script.js"></script>
 
   </body>

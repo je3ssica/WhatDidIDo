@@ -44,7 +44,6 @@ module.exports = function(app, passport){
           sess.userId = users[0].id;
           sess.userName = users[0].firstName;
           sess.userMail = users[0].email;
-
           res.redirect('/dashboard');
         } else {
           console.log("fel lösenord");
@@ -54,7 +53,9 @@ module.exports = function(app, passport){
     });
   });
 
-  app.get('/signup', function(req, res){
+
+
+  app.get('/signup', function(req, res) {
     res.render('pages/signup.ejs', {menu:loggedOutMenu});
   });
 
@@ -115,6 +116,12 @@ module.exports = function(app, passport){
     user: sess.user });
   });
 
+app.get('/history', function(req,res){
+  res.render('pages/history.ejs', { menu: loggedInMenu});
+});
+app.get('/statistics', function(req,res){
+  res.render('pages/statistics.ejs', { menu: loggedInMenu});
+})
 
   app.get('/logout', function(req, res){
     req.logout();
