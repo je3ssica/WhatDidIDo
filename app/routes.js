@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 var clients = require('./getClients.js');
 var session = require('express-session');
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport){
   var sess;
   var loggedOutMenu = [
     { text: 'About', link: '/about' },
@@ -13,15 +13,15 @@ module.exports = function(app, passport) {
   var loggedInMenu = [
     { text: 'About', link: '/about' },
     { text: 'Settings', link: '/settings'},
-    { text: 'LogOut', link: '/about' }
+    { text: 'LogOut', link: '/logout' }
   ]
 
-  app.get('/', function(req, res) {
+  app.get('/', function(req, res){
 
     res.render('pages/index.ejs', {menu:loggedOutMenu});
   });
 
-  app.get('/login', function(req, res) {
+  app.get('/login', function(req, res){
     res.render('pages/login.ejs', {menu:loggedOutMenu});
   });
 
@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
     password = req.body.password;
 
     db.query("SELECT * FROM users WHERE email='"+email+"';", function(err, users){
-      if(err) {
+      if(err){
         throw err;
       } else if(users == 0){
         console.log('There is no such user');
@@ -45,23 +45,18 @@ module.exports = function(app, passport) {
           sess.userName = users[0].firstName;
           sess.userMail = users[0].email;
 
-            // res.render('dashboard.ejs', {user:users[0]});
-            res.redirect('/dashboard');
+          res.redirect('/dashboard');
         } else {
           console.log("fel lösenord");
           res.redirect('/login')
         };
       }
-
     });
   });
 
-
-
-  app.get('/signup', function(req, res) {
+  app.get('/signup', function(req, res){
     res.render('pages/signup.ejs', {menu:loggedOutMenu});
   });
-
 
   app.post('/signup', function(req,res){
     var firstName = req.body.first_name,
@@ -69,14 +64,14 @@ module.exports = function(app, passport) {
     password =  req.body.password,
     password2 = req.body.password2;
 
-    if(password == password2) {
+    if(password == password2){
       var salt = bcrypt.genSaltSync(10);
       var hashedPw = bcrypt.hashSync(password, salt);
     } else {
       console.log('Passwords do not match');
     }
-    db.query(" SELECT * FROM users WHERE email='" + email + "';", function (err, users) {
-      if(err) {
+    db.query(" SELECT * FROM users WHERE email='" + email + "';", function (err, users){
+      if(err){
         throw err;
       } else if(users.length > 0){
         console.log('The email already exists');
@@ -95,26 +90,22 @@ module.exports = function(app, passport) {
   });
 
 
-  app.get('/dashboard', function(req, res) {
+  app.get('/dashboard', function(req, res){
     var email = sess.userMail;
     var userId = sess.userId;
 
     if(sess.userName){
-      db.query(" SELECT * FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients) {
-        if(err) {
+      db.query(" SELECT * FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients){
+        if(err){
           throw err;
         } else {
           console.log(clients);
           res.render('pages/dashboard.ejs', {
-            user : sess.userName, // get the user out of session and pass to template
+            user : sess.userName,
             menu: loggedInMenu,
             clients: clients
           });
         }
-      // res.render('pages/dashboard.ejs', {
-      //   user : sess.userName, // get the user out of session and pass to template
-      //   menu: loggedInMenu
-      // });
     });
   }
   });
@@ -125,7 +116,7 @@ module.exports = function(app, passport) {
   });
 
 
-  app.get('/logout', function(req, res) {
+  app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
   });

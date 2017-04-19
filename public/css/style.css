@@ -13,10 +13,23 @@ nav ul a {
   text-transform: uppercase;
 }
 
+nav ul a:hover {
+  color: #78be20;
+}
+
 nav a.brand-logo {
   color: #333333;
   font-family: 'Alegreya Sans SC', sans-serif;
   margin-left: 30px;
+}
+
+.btn-large, .btn {
+  background-color: #5e9419;
+}
+
+.btn-large:hover, .btn:hover {
+  background-color: #78be20;
+
 }
 
 .hero {
@@ -40,6 +53,7 @@ footer.page-footer {
 
 h4 {
   text-align: center;
+  color: #f9f9f9;
 }
 
 #dashboard {
@@ -151,7 +165,7 @@ input[name="timestamp"] {
   background-color: #f9f9f9;
   width: 70%;
   margin: 0 auto;
-  padding: 30px;
+  padding: 50px;
   border-radius: 50px;
 }
 
