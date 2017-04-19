@@ -51,6 +51,10 @@ footer.page-footer {
   background-color: #333333;
 }
 
+footer.page-footer .footer-copyright  {
+  font-weight: 400;
+}
+
 h4 {
   text-align: center;
   color: #f9f9f9;
