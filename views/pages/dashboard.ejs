@@ -17,11 +17,12 @@
         <ul class="collapsible" data-collapsible="accordion">
           <% clients.forEach(function(client) { %>
           <li>
-            <div class="collapsible-header"><i class="material-icons">person</i><%= client.name%></div>
+            <div class="collapsible-header"><i class="material-icons">person</i><%= client.clientName%></div>
             <div class="collapsible-body">
+            <% client.projects.forEach(function(project){ %>
               <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                  <div class="collapsible-header">  <i class="material-icons">assignment</i><%= client.project%></div>
+                  <div class="collapsible-header">  <i class="material-icons">assignment</i><%=project.projectName%></div>
                   <div class="collapsible-body">
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="What did you do?">
                     <input type="date" data-value="2015/04/20" class="datepicker">
@@ -35,17 +36,15 @@
                   </div>
                 </li>
               </ul>
+            <%}); %>
             </div>
           </li>
           <% }); %>
 
       </ul>
 
-
-
       </div>
     </div>
-
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/materialize.min.js"></script>

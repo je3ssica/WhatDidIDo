@@ -93,15 +93,38 @@ module.exports = function(app, passport) {
     var userId = sess.user;
 
     if(sess.userName){
-      db.query(" SELECT * FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients) {
+      // db.query(" SELECT users.id, clients.*, projects.* FROM users, clients, projects WHERE users.id='" + userId + "' AND projects.responsible_id='" + userId + "' AND projects.company_id = clients.id;", function (err, clients) {
+      db.query("SELECT C.id AS CompanyID, C.company AS CompanyName, P.id AS "+ "ProjectID, P.project AS ProjectName, U.firstName AS Name " +
+	    "FROM PROJECTS AS P " +
+	    "LEFT JOIN members AS M ON P.id = M.projId " +
+      "LEFT JOIN clients AS C ON C.id = P.clientID " +
+      "LEFT JOIN users AS U ON U.id = M.userId " +
+      "WHERE M.userId = " + userId + " " +
+      "GROUP BY C.id, P.project ORDER BY C.id;", function(err, clients){
         if(err) {
           throw err;
         } else {
-          console.log(clients);
+          var clientsArr = new Array();
+          var projects = new Array();
+          var tmpClient = -1;
+          clients.forEach(function(C){
+            let clientID = C.CompanyID;
+            projects.push({
+                 projectID: C.ProjectID,
+                 projectName: C.ProjectName
+            });
+
+            if(tmpClient != clientID){
+              clientsArr.push({clientName: C.CompanyName, clientID: clientID, projects:projects});
+              projects = [];
+            }
+            tmpClient = clientID;
+          });
+          console.log(clientsArr);
           res.render('pages/dashboard.ejs', {
             user : sess.userName, // get the user out of session and pass to template
             menu: loggedInMenu,
-            clients: clients
+            clients: clientsArr
           });
         }
     });
